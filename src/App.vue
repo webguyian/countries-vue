@@ -1,7 +1,11 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue';
+import NavBar from './components/NavBar.vue';
 </script>
 
 <template>
-  <HelloWorld msg="Hello world!" />
+  <div
+    class="flex flex-col h-full text-[#111517] bg-[#fafafa] dark:text-white dark:bg-[#202c37]"
+  >
+    <NavBar />
+  </div>
 </template>
