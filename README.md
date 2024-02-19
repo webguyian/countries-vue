@@ -1,7 +1,36 @@
-# Vue 3 + Vite
+# Countries: Vue
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+**Frontend Mentor - REST Countries API with color theme switcher solution**
 
-## Recommended IDE Setup
+This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Overview
+
+### The challenge
+
+Users should be able to:
+
+- See all countries from the API on the homepage
+- Search for a country using an `input` field
+- Filter countries by region
+- Click on a country to see more detailed information on a separate page
+- Click through to the border countries on the detail page
+- Toggle the color scheme between light and dark mode
+
+### Screenshot
+
+![Screenshot](./public/screenshot.jpg)
+
+### Built with
+
+- Semantic HTML5 markup
+- CSS Grid
+- Mobile-first workflow
+- [Vue](https://vuejs.org/) - JS framework
+- [Tailwind CSS](https://tailwindcss.com/) - For styles
+
+## Author
+
+- Website - [Web Guy Ian](https://webguyian.com/)
+- GitHub - [@webguyian](https://github.com/webguyian)
+- Frontend Mentor - [@webguyian](https://www.frontendmentor.io/profile/webguyian)
