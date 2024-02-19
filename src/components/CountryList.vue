@@ -20,10 +20,8 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router';
 import useCountries from '../composables/use-countries';
 import CountryCard from './CountryCard.vue';
 
-const route = useRoute();
-const { countries, countryCount, onLoadMore, showMore } = useCountries(route);
+const { countries, countryCount, onLoadMore, showMore } = useCountries();
 </script>
