@@ -1,7 +1,10 @@
 <template>
   <router-link
     class="appearance-none w-[250px] bg-white border border-gray-200 shadow dark:bg-gray-700 dark:border-gray-600"
-    :to="{ name: ROUTES.detail.name, params: { id: country.cca3 } }"
+    :to="{
+      name: ROUTES.detail.name,
+      params: { id: country.cca3 }
+    }"
   >
     <div
       class="border-b border-gray-300 h-40 bg-no-repeat bg-cover bg-center dark:border-gray-700"
