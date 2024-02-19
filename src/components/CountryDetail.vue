@@ -36,7 +36,31 @@
         >
           {{ country.name.common }}
         </h2>
-        <div class="grid grid-cols-2 gap-4">Lists go here</div>
+        <div class="grid grid-cols-2 gap-4">
+          <DescriptionList
+            :items="[
+              { key: 'Capital', value: country.capital?.[0] ?? 'N/A' },
+              { key: 'Region', value: country.region },
+              {
+                key: 'Population',
+                value: population
+              }
+            ]"
+          />
+          <DescriptionList
+            :items="[
+              { key: 'Top-Level Domain', value: country.tld?.join(', ') },
+              {
+                key: 'Currencies',
+                value: currencies
+              },
+              {
+                key: 'Languages',
+                value: languages
+              }
+            ]"
+          />
+        </div>
         <dl
           v-if="borderCountries"
           class="flex flex-col md:flex-row mt-8 text-sm"
@@ -59,12 +83,18 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
 import { ROUTES } from '../const';
 import useCountry from '../composables/use-country';
+import DescriptionList from './DescriptionList.vue';
 
-const { borderCountries, country } = useCountry();
-const borderKeys = computed(() => Object.keys(borderCountries.value));
+const {
+  borderCountries,
+  borderKeys,
+  country,
+  currencies,
+  languages,
+  population
+} = useCountry();
 const buttonClasses =
   'py-2 px-6 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded border border-gray-200 hover:bg-gray-100 focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-700';
 </script>
