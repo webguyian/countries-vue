@@ -33,7 +33,7 @@
         </div>
         <input
           id="search-filter"
-          v-model="search"
+          v-model="searchQuery"
           class="peer block w-full py-3 ps-12 pe-8 text-sm text-gray-900 shadow rounded bg-white dark:bg-gray-700 focus:ring-2 focus:outline-none focus:ring-blue-200 dark:placeholder-gray-400 dark:text-white dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500"
           name="search"
           placeholder="Search for a country..."
@@ -44,7 +44,7 @@
           class="absolute inset-y-0 end-4 peer-invalid:hidden"
           title="Clear search"
           type="reset"
-          @click="handleResetSearch"
+          @click="onResetSearch"
         >
           <svg
             class="w-4 h-4 text-gray-300 hover:text-gray-400 dark:text-gray-400"
@@ -59,21 +59,84 @@
           </svg>
         </button>
       </div>
-      <input v-if="region" type="hidden" name="region" :value="region" />
+      <input
+        v-if="regionQuery"
+        type="hidden"
+        name="region"
+        :value="regionQuery"
+      />
     </form>
+    <div ref="dropdown" class="relative min-w-52">
+      <button
+        id="dropdown-trigger"
+        class="inline-flex justify-between items-center w-full px-5 py-3 bg-white hover:bg-neutral-100 shadow focus:ring-2 focus:outline-none focus:ring-blue-200 rounded text-sm text-center dark:text-gray-300 dark:bg-gray-700"
+        type="button"
+        @click="onToggle"
+      >
+        <span v-if="regionQuery">Filter By: {{ regionQuery }}</span>
+        <span v-else>Filter By Region</span>
+        <svg
+          class="w-2.5 h-2.5 ms-3"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 10 6"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="m1 1 4 4 4-4"
+          />
+        </svg>
+      </button>
+      <div
+        id="dropdownHover"
+        :class="[
+          dropdownClass,
+          'top-12 z-10 w-full bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700'
+        ]"
+      >
+        <ul
+          class="py-2 text-sm text-gray-700 dark:text-gray-300"
+          aria-labelledby="dropdown-trigger"
+        >
+          <button
+            v-if="regionQuery"
+            type="button"
+            class="text-red-600 font-bold w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+            @click="onResetRegion"
+          >
+            Clear selected region
+          </button>
+          <li v-for="region in REGIONS" :key="region">
+            <button
+              type="button"
+              class="w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              @click="onSelect"
+            >
+              {{ region }}
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { REGION_KEY, ROUTES, SEARCH_KEY } from '../const';
-import { useRoute, useRouter } from 'vue-router';
+import { REGIONS, ROUTES } from '../const';
+import useSearchFilter from '../composables/use-search-filter';
 
-const route = useRoute();
-const router = useRouter();
-const region = ref(route.query[REGION_KEY]);
-const search = ref(route.query[SEARCH_KEY]);
-const handleResetSearch = () => {
-  router.push({ name: ROUTES.home.name, query: {} });
-};
+const {
+  dropdown,
+  dropdownClass,
+  onResetRegion,
+  onResetSearch,
+  onSelect,
+  onToggle,
+  regionQuery,
+  searchQuery
+} = useSearchFilter();
 </script>
