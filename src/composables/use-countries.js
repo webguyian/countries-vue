@@ -23,15 +23,14 @@ const useCountries = () => {
   const onLoadMore = () => {
     page.value = page.value * 2;
   };
-  const searchQuery = computed(() => route.query.search);
-  const search = null;
-  const region = null;
+  const search = computed(() => route.query[SEARCH_KEY]);
+  const region = computed(() => route.query[REGION_KEY]);
   const filterByCountry = (country) =>
-    search
-      ? country.name.common.toLowerCase().startsWith(search.toLowerCase())
+    search.value
+      ? country.name.common.toLowerCase().startsWith(search.value.toLowerCase())
       : country;
   const filterByRegion = (country) =>
-    region ? country.region === region : country;
+    region.value ? country.region === region.value : country;
   const filteredCountries = computed(() =>
     countries.value?.filter(filterByRegion)?.filter(filterByCountry)
   );

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SearchFilter />
     <div class="grid grid-cols-fluid justify-items-center gap-10 mb-8">
       <CountryCard
         v-for="country in countries"
@@ -22,6 +23,7 @@
 <script setup>
 import useCountries from '../composables/use-countries';
 import CountryCard from './CountryCard.vue';
+import SearchFilter from './SearchFilter.vue';
 
 const { countries, countryCount, onLoadMore, showMore } = useCountries();
 </script>
